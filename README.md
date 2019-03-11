@@ -13,4 +13,4 @@ Available on [Heroku](https://mighty-lowlands-50090.herokuapp.com/).
   - [vue-socket.io - npm](https://www.npmjs.com/package/vue-socket.io)
 
 ## Other techniques
-- CSS Grid
+- CSS Grid for a quick UI sketch
