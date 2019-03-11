@@ -1,16 +1,16 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
 const app = express();
-// const http  = require('http').Server(app);
 const routes = require('./routes/routes');
 const controller = require('./routes/controllers/restController');
+const socketIO = require('socket.io');
 
 app.use(bodyParser.json());
 app.use(cors());
 
-const socketIO = require('socket.io');
+
+const PORT = process.env.PORT || 8000;
 
 if(process.env.NODE_ENV === 'production'){
   //Static folder
@@ -18,13 +18,18 @@ if(process.env.NODE_ENV === 'production'){
   
   //Handle SPA
   app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
-  
+
+  //Heroku tricks
+  const server = express()
+  .use((req, res) => res.sendFile(__dirname + '/public/index.html'))
+  .listen(PORT, () => console.log(`Listening Socket on ${ PORT }`));
+}
+else {
+  const server = express()
+  .use(app)
+  .listen(PORT, () => console.log(`Listening Socket on ${ PORT }`));
 }
 
-const PORT = process.env.PORT || 8000;
-const server = express()
-.use(app)
-.listen(PORT, () => console.log(`Listening Socket on ${ PORT }`));
 
 const io = socketIO(server);
 
