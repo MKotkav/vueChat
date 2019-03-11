@@ -6,7 +6,10 @@ const dbkey = require('../../hide/dbKeys')
 
 
 exports.load_index = (req, res, err) => {
-    res.sendFile('../../../app/dist/index.html')
+    if(process.env.NODE_ENV === 'production') {
+        res.sendFile('../../public/index.html');
+    }
+    else res.sendFile('../../../client/public/index.html');
 }
 
 exports.add_message = async (req, res, err) => {
