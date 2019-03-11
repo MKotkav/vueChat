@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const app = express();
 const http  = require('http').Server(app);
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 const routes = require('./routes/routes');
 const controller = require('./routes/controllers/restController');
 
