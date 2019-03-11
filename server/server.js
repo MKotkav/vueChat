@@ -18,20 +18,13 @@ if(process.env.NODE_ENV === 'production'){
   
   //Handle SPA
   app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
-
-  //Heroku tricks
-  const server = express()
-  .use((req, res) => res.sendFile(__dirname + '/public/index.html'))
-  .listen(PORT, () => console.log(`Listening Socket on ${ PORT }`));
-}
-else {
-  const server = express()
-  .use(app)
-  .listen(PORT, () => console.log(`Listening Socket on ${ PORT }`));
 }
 
-
-const io = socketIO(server);
+const server = express()
+.use(app)
+.listen(PORT, () => console.log(`Listening Socket on ${ PORT }`));
 
 routes(app);
+const io = socketIO(server);
 controller.handleSocket(io);
+
