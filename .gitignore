@@ -1,2 +1,4 @@
-/client
+.vscode
 node_modules
+/client
+/server/hide
