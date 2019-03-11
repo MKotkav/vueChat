@@ -1,0 +1,55 @@
+body {
+    background-color: #35495e;
+    height: 100%;
+    width: 95%;
+}
+.app {
+    margin: 0;
+    height: 90vh;
+    width: 95%;
+    background-color: #35495e;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: 1% 49% 49% 1%;
+    grid-template-areas: 
+                        ".... .... .... .... .... ...."
+                        ".... chat chat chat chat ...."
+                        ".... chat chat chat chat ...."
+                        ".... .... .... .... .... ....";
+}
+
+.chat {
+    height: 100%;
+    width: 100%;
+    grid-area: chat;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: minmax(2vh, auto) minmax(3vh, 60vh) minmax(3vh, auto);
+    row-gap: 1vh;
+    grid-template-areas:
+                        "header header header header" 
+                        "box box box box"
+                        "input input input input";
+    color: #ffffff;
+}
+
+.chat-box {
+    height: 100%;
+    width: 100%;
+    grid-area: box;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.header {
+    color: #42b883;
+    overflow: visible;
+}
+
+.input {
+    grid-area: input;
+}
+
+input {
+    border: solid white;
+}
